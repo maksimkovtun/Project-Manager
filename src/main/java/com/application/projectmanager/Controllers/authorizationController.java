@@ -20,10 +20,10 @@ public class authorizationController {
     @FXML
     TextField loginTextField;
     UserDAO userDAO = new UserDAO();
+    projectManager projectManager = new projectManager();
     @FXML
     protected void onAuthButtonClick(ActionEvent event) throws Exception {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        projectManager projectManager = new projectManager();
         if(!Objects.equals(loginTextField.getText(), "") && !Objects.equals(passwordTextField.getText(), "")) {
             if(userDAO.checkAccount(loginTextField.getText(), passwordTextField.getText())){
                 projectManager.changeScene(stage, "/com/application/projectmanager/projectManager.fxml");
@@ -33,7 +33,6 @@ public class authorizationController {
     @FXML
     public void onRegLinkClick(ActionEvent event) throws Exception{
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        projectManager projectManager = new projectManager();
         projectManager.changeScene(stage, "/com/application/projectmanager/registration.fxml");
     }
 }

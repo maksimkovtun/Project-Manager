@@ -5,6 +5,7 @@ import com.application.projectmanager.DAO.UserDAO;
 import com.application.projectmanager.Entity.UsersEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,11 +23,11 @@ public class registrationController {
     PasswordField passwordTextField;
     @FXML
     TextField loginTextField;
-
+    projectManager projectManager = new projectManager();
+    Stage stage = new Stage();
     @FXML
     public void onRegButtonClick(ActionEvent event) throws Exception{
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        projectManager projectManager = new projectManager();
+        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Session session = projectManager.getSession();
         Transaction transaction = null;
         UserDAO userDAO = new UserDAO();
@@ -49,5 +50,10 @@ public class registrationController {
                 }
             }else{infoLabel.setText("Имя занято.");}
         }else{infoLabel.setText("Введите логин и пароль.");}
+    }
+    @FXML
+    public void onAuthLinkClick(ActionEvent event) throws Exception{
+        stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        projectManager.changeScene(stage, "/com/application/projectmanager/authorization.fxml");
     }
 }
