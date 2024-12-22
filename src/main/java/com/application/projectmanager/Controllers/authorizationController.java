@@ -26,6 +26,7 @@ public class authorizationController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         if(!Objects.equals(loginTextField.getText(), "") && !Objects.equals(passwordTextField.getText(), "")) {
             if(userDAO.checkAccount(loginTextField.getText(), passwordTextField.getText())){
+                addProjectController.setUsername(loginTextField.getText());
                 projectManager.changeScene(stage, "/com/application/projectmanager/projectManager.fxml");
             }else{infoLabel.setText("Ошибка логина или пароля.");}
         }else{infoLabel.setText("Введите логин и пароль.");}
