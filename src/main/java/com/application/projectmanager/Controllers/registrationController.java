@@ -28,26 +28,12 @@ public class registrationController {
     @FXML
     public void onRegButtonClick(ActionEvent event) throws Exception{
         stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Session session = projectManager.getSession();
-        Transaction transaction = null;
         UserDAO userDAO = new UserDAO();
-        UsersEntity user = new UsersEntity();
 
         if(!Objects.equals(loginTextField.getText(), "") && !Objects.equals(passwordTextField.getText(), "")) {
             if(!userDAO.checkUsername(loginTextField.getText())) {
-                try {
-                    transaction = session.beginTransaction();
-                    user.createUser(loginTextField.getText(), BCrypt.hashpw(passwordTextField.getText(), BCrypt.gensalt()));
-                    session.save(user);
-                    transaction.commit();
-                } catch (Exception e) {
-                    if (transaction != null) {
-                        transaction.rollback();
-                    }
-                    e.printStackTrace();
-                } finally {
-                    projectManager.changeScene(stage, "/com/application/projectmanager/authorization.fxml");
-                }
+                userDAO.createUser(loginTextField.getText(), BCrypt.hashpw(passwordTextField.getText(), BCrypt.gensalt()));
+                projectManager.changeScene(stage, "/com/application/projectmanager/authorization.fxml");
             }else{infoLabel.setText("Имя занято.");}
         }else{infoLabel.setText("Введите логин и пароль.");}
     }
