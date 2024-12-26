@@ -15,9 +15,10 @@ public class UserDAO {
     projectManager projectManager = new projectManager();
     Session session = projectManager.getSession();
     Transaction transaction = null;
+    UsersEntity user = new UsersEntity();
 
     public boolean checkUsername(String username){
-        UsersEntity user = new UsersEntity();
+        user = new UsersEntity();
         try {
             transaction = session.beginTransaction();
             String sql = "FROM UsersEntity WHERE username = :username";
@@ -34,7 +35,7 @@ public class UserDAO {
         return user != null;
     }
     public boolean checkAccount(String username, String userpassword){
-        UsersEntity user = new UsersEntity();
+        user = new UsersEntity();
         try {
             transaction = session.beginTransaction();
             String sql = "FROM UsersEntity WHERE username = :username";
@@ -53,7 +54,7 @@ public class UserDAO {
         }else{return false;}
     }
     public void createUser(String username, String userpassword){
-        UsersEntity user = new UsersEntity();
+        user = new UsersEntity();
         try {
             transaction = session.beginTransaction();
             user.setUsername(username);
@@ -70,7 +71,7 @@ public class UserDAO {
 
     public Integer getUserId(String username){
         Integer userId = 0;
-        UsersEntity user = new UsersEntity();
+        user = new UsersEntity();
         try {
             transaction = session.beginTransaction();
             String sql = "FROM UsersEntity WHERE username = :username";

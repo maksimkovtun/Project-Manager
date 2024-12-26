@@ -2,18 +2,13 @@ package com.application.projectmanager.Controllers;
 
 import com.application.projectmanager.Classes.projectManager;
 import com.application.projectmanager.DAO.UserDAO;
-import com.application.projectmanager.Entity.UsersEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.Objects;
 
 public class registrationController {

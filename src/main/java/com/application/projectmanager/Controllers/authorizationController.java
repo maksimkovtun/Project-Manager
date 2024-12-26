@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.Objects;
 
 public class authorizationController {
@@ -27,6 +25,7 @@ public class authorizationController {
         if(!Objects.equals(loginTextField.getText(), "") && !Objects.equals(passwordTextField.getText(), "")) {
             if(userDAO.checkAccount(loginTextField.getText(), passwordTextField.getText())){
                 addProjectController.setUsername(loginTextField.getText());
+                projectManagerController.setUsername(loginTextField.getText());
                 projectManager.changeScene(stage, "/com/application/projectmanager/projectManager.fxml");
             }else{infoLabel.setText("Ошибка логина или пароля.");}
         }else{infoLabel.setText("Введите логин и пароль.");}

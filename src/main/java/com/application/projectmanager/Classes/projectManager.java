@@ -7,11 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.util.Objects;
 
 public class projectManager extends Application {
-
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     Session session = sessionFactory.openSession();
     @Override
@@ -21,13 +19,11 @@ public class projectManager extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
     public void changeScene(Stage stage, String fxmlPath) throws Exception {
         Parent newRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
         stage.setTitle("Project Manager");
         stage.setScene(new Scene(newRoot));
     }
-
     public Session getSession(){
         return session;
     }
